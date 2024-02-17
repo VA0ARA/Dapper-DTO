@@ -8,7 +8,7 @@ public class AdoRepository
 {
     public List<Student> GetStudents()
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Database=Maktab104;";
+        string connectionString = @"Server=VA0ARA;Integrated Security=true;Database=ADO;TrustServerCertificate=True;";
         using (SqlConnection cn = new SqlConnection(connectionString))
         {
 
@@ -48,10 +48,9 @@ public class AdoRepository
         }
     
     }
-
     public void AddStudent(Student student)
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Database=Maktab104;";
+        string connectionString = @"Server=VA0ARA;Integrated Security=true;Database=ADO;TrustServerCertificate=True;";
         using (SqlConnection cn = new SqlConnection(connectionString))
         {
             try
@@ -61,6 +60,7 @@ public class AdoRepository
 
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
+                    cmd.Parameters.Add("@Id", SqlDbType.BigInt).Value = student.Id;
                     cmd.Parameters.Add("@SN", SqlDbType.BigInt).Value = student.SN;
                     cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = student.FirstName;
                     cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = student.LastName;

@@ -8,7 +8,7 @@ public class DapperRepository
 {
     public List<Student> GetStudents()
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Database=Maktab104;";
+        string connectionString = @"Server=VA0ARA;Integrated Security=true;Database=ADO;TrustServerCertificate=True;";
         using var cn = new SqlConnection(connectionString);
         var sql = $"Select * from dbo.Students";
         var cmd = new CommandDefinition(sql);
@@ -17,8 +17,8 @@ public class DapperRepository
     }
     public void AddStudent(Student student)
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Database=Maktab104;";
-       
+        string connectionString = @"Server=VA0ARA;Integrated Security=true;Database=ADO;TrustServerCertificate=True;";
+
         string sql = "INSERT dbo.Students(SN,FirstName,LastName,Age,Email,IsActive)VALUES(@SN,@FirstName,@LastName,@Age,@Email,@IsActive)";
         using var cn = new SqlConnection(connectionString);
         var command = new CommandDefinition(sql, student);
